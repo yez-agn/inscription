@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MTRADE Academy - Inscription</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* RESET ET TYPO */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+    body {
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    header {
+      background: #0d1117;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+    }
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+    }
+    .hero img {
+      max-width: 250px;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      border: 3px solid #fff;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    form {
+      max-width: 500px;
+      margin: 2rem auto 3rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    form h3 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #0d1117;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+      color: #0d1117;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: #2575fc;
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: #ff5722;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: #2575fc;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #6a11cb;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: #0d1117;
+      color: #cbd5e1;
+    }
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 1.5rem;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      form {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MTRADE Academy</h1>
+    <p>Formation Gratuite en Trading — Démarre le 20 Décembre 2025</p>
+  </header>
+  <section class="hero">
+    <img src="images/affiche.jpg" alt="MTRADE Formation">
+    <h2>Rejoins la prochaine génération de traders</h2>
+    <p>
+      Cette formation gratuite est réservée aux candidats motivés et engagés. 
+      Si ton profil est retenu, tu recevras un lien privé pour accéder au programme complet.
+    </p>
+  </section>
+  <form action="https://formspree.io/f/mzzybqdv" method="POST">
+    <h3>Formulaire de candidature</h3>
+    <label>Nom complet :</label>
+    <input type="text" name="Nom" placeholder="Ex : Jean Dupont" required>
+    <label>Email :</label>
+    <input type="email" name="Email" placeholder="Ex : jean@example.com" required>
+    <label>Numéro WhatsApp :</label>
+    <input type="text" name="WhatsApp" placeholder="+229 90 00 00 00">
+    <label>Pays :</label>
+    <input type="text" name="Pays" placeholder="Ex : Bénin">
+    <label>Pourquoi veux-tu suivre la formation MTRADE ?</label>
+    <textarea name="Motivation" rows="4" placeholder="Explique brièvement ta motivation..." required></textarea>
+    <p class="note">MTRADE sélectionne uniquement les candidats prêts à s’impliquer dans leur réussite.</p>
+    <button type="submit">Soumettre ma candidature</button>
+  </form>
+  <footer>
+    © 2025 MTRADE Academy | Tous droits réservés
+  </footer>
+</body>
+</html>
