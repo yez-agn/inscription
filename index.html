@@ -28,6 +28,7 @@
     button { display: block; width: 100%; padding: 1rem; background: #2575fc; color: #fff; font-size: 1.1rem; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
     button:hover { background: #6a11cb; }
     footer { text-align: center; padding: 1.5rem; background: #0d1117; color: #cbd5e1; }
+    /* RESPONSIVE */
     @media (max-width: 600px) { .hero h2 { font-size: 1.5rem; } header h1 { font-size: 2rem; } form { margin: 1rem; padding: 1.5rem; } }
   </style>
 </head>
@@ -36,7 +37,6 @@
     <h1>MTRADE Academy</h1>
     <p>Formation Gratuite en Trading — Démarre le 20 Décembre 2025</p>
   </header>
-
   <section class="hero">
     <img src="images/affiche.jpg" alt="MTRADE Formation">
     <h2>Rejoins la prochaine génération de traders</h2>
@@ -70,23 +70,27 @@
   <!-- SCRIPT pour envoyer à Google Sheets et redirection -->
 
   <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzOA0B_s5dZbFY_oBOYI4_XpmQpWwSYKTcdBayDM_E0tp8oY-i0L2xy_zvjMK4WwxmR/exec";
+    const chariowURL = "https://ilscqhkk.mychariow.shop/prd_fw2qh5/checkout";
+
     document.getElementById("mtradeForm").addEventListener("submit", function(e) {
-      e.preventDefault(); // empêche l'envoi classique
+      e.preventDefault();
 
       const formData = new FormData(this);
+      const params = new URLSearchParams();
 
-      // URL de ton Google Script
-      const scriptURL = "https://script.google.com/macros/s/AKfycbxrR5nUwFCwvAEODXTTCRGIykC-GDNVJX0q2XmhFR42mvCd7UeKia-bqiLZLVb4cLPN/exec";
+      for (let pair of formData.entries()) {
+        params.append(pair[0], pair[1]);
+      }
 
-      fetch(scriptURL, {
-        method: "POST",
-        body: formData
-      })
-      .then(() => {
-        // Ouvre le produit Chariow dans un nouvel onglet
-        window.open("https://ilscqhkk.mychariow.shop/prd_fw2qh5/checkout", "_blank");
-      })
-      .catch(() => alert("Erreur lors de l’envoi, réessaie."));
+      // Envoi des données via image GET (évite CORS)
+      const img = new Image();
+      img.src = scriptURL + "?" + params.toString();
+
+      // Redirection Chariow après envoi
+      setTimeout(() => {
+        window.open(chariowURL, "_blank");
+      }, 500);
     });
   </script>
 
