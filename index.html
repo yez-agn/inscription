@@ -7,7 +7,6 @@
   <title>MTRADE Academy - Inscription</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* RESET ET TYPO */
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
     body { background: #f5f7fa; color: #333; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
@@ -28,7 +27,6 @@
     button { display: block; width: 100%; padding: 1rem; background: #2575fc; color: #fff; font-size: 1.1rem; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
     button:hover { background: #6a11cb; }
     footer { text-align: center; padding: 1.5rem; background: #0d1117; color: #cbd5e1; }
-    /* RESPONSIVE */
     @media (max-width: 600px) { .hero h2 { font-size: 1.5rem; } header h1 { font-size: 2rem; } form { margin: 1rem; padding: 1.5rem; } }
   </style>
 </head>
@@ -37,6 +35,7 @@
     <h1>MTRADE Academy</h1>
     <p>Formation Gratuite en Trading — Démarre le 20 Décembre 2025</p>
   </header>
+
   <section class="hero">
     <img src="images/affiche.jpg" alt="MTRADE Formation">
     <h2>Rejoins la prochaine génération de traders</h2>
@@ -45,9 +44,7 @@
     </p>
   </section>
 
-  <!-- Formulaire avec ID pour le script -->
-
-  <form id="mtradeForm">
+  <form id="inscriptionscrips">
     <h3>Formulaire de candidature</h3>
     <label>Nom complet :</label>
     <input type="text" name="Nom" placeholder="Ex : Jean Dupont" required>
@@ -67,30 +64,25 @@
     © 2025 MTRADE Academy | Tous droits réservés
   </footer>
 
-  <!-- SCRIPT pour envoyer à Google Sheets et redirection -->
-
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzOA0B_s5dZbFY_oBOYI4_XpmQpWwSYKTcdBayDM_E0tp8oY-i0L2xy_zvjMK4WwxmR/exec";
-    const chariowURL = "https://ilscqhkk.mychariow.shop/prd_fw2qh5/checkout";
-
-    document.getElementById("mtradeForm").addEventListener("submit", function(e) {
+    document.getElementById("inscriptionscrips").addEventListener("submit", function(e){
       e.preventDefault();
 
-      const formData = new FormData(this);
-      const params = new URLSearchParams();
+      let formData = Object.fromEntries(new FormData(this));
 
-      for (let pair of formData.entries()) {
-        params.append(pair[0], pair[1]);
-      }
+      const scriptURL = "https://script.google.com/macros/s/AKfycbzOA0B_s5dZbFY_oBOYI4_XpmQpWwSYKTcdBayDM_E0tp8oY-i0L2xy_zvjMK4WwxmR/exec";
 
-      // Envoi des données via image GET (évite CORS)
-      const img = new Image();
-      img.src = scriptURL + "?" + params.toString();
-
-      // Redirection Chariow après envoi
-      setTimeout(() => {
-        window.open(chariowURL, "_blank");
-      }, 500);
+      fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {"Content-Type":"application/json"}
+      })
+      .then(response => {
+        if (!response.ok) throw new Error("Erreur lors de l’envoi");
+        // ouvre Chariow seulement après l'envoi réussi
+        window.open("https://ilscqhkk.mychariow.shop/prd_fw2qh5/checkout", "_blank");
+      })
+      .catch(error => alert(error));
     });
   </script>
 
