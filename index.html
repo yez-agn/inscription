@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -27,7 +28,6 @@
     button { display: block; width: 100%; padding: 1rem; background: #2575fc; color: #fff; font-size: 1.1rem; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
     button:hover { background: #6a11cb; }
     footer { text-align: center; padding: 1.5rem; background: #0d1117; color: #cbd5e1; }
-    /* RESPONSIVE */
     @media (max-width: 600px) { .hero h2 { font-size: 1.5rem; } header h1 { font-size: 2rem; } form { margin: 1rem; padding: 1.5rem; } }
   </style>
 </head>
@@ -36,6 +36,7 @@
     <h1>MTRADE Academy</h1>
     <p>Formation Gratuite en Trading — Démarre le 20 Décembre 2025</p>
   </header>
+
   <section class="hero">
     <img src="images/affiche.jpg" alt="MTRADE Formation">
     <h2>Rejoins la prochaine génération de traders</h2>
@@ -45,6 +46,7 @@
   </section>
 
   <!-- Formulaire avec ID pour le script -->
+
   <form id="mtradeForm">
     <h3>Formulaire de candidature</h3>
     <label>Nom complet :</label>
@@ -66,22 +68,22 @@
   </footer>
 
   <!-- SCRIPT pour envoyer à Google Sheets et redirection -->
+
   <script>
     document.getElementById("mtradeForm").addEventListener("submit", function(e) {
       e.preventDefault(); // empêche l'envoi classique
 
-      let data = Object.fromEntries(new FormData(this));
+      const formData = new FormData(this);
 
-      // Remplace par l'URL de ton Google Script
+      // URL de ton Google Script
       const scriptURL = "https://script.google.com/macros/s/AKfycbxrR5nUwFCwvAEODXTTCRGIykC-GDNVJX0q2XmhFR42mvCd7UeKia-bqiLZLVb4cLPN/exec";
 
       fetch(scriptURL, {
         method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
+        body: formData
       })
       .then(() => {
-        // Remplace par ton lien Chariow
+        // Ouvre le produit Chariow dans un nouvel onglet
         window.open("https://ilscqhkk.mychariow.shop/prd_fw2qh5/checkout", "_blank");
       })
       .catch(() => alert("Erreur lors de l’envoi, réessaie."));
